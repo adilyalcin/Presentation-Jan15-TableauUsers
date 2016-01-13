@@ -1,52 +1,631 @@
 <!doctype html>
-<html>
+<html lang="en">
+
 	<head>
-
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
-		<title>reveal.js - The HTML Presentations Framework</title>
 
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/main.css">
+		<title>Visualization for Data Exploration: Why &amp; How?</title>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Presentation">
+		<meta name="author" content="Adil Yalcin">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+
+		<!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- keshif stuff -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="http://keshif.me/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://keshif.me/js/d3.3.5.5.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://keshif.me/keshif.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://keshif.me/keshif.css"/ type="text/css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
 
 		<!--[if lt IE 9]>
-		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
-
 	</head>
+<style>
+.myTitle{
+  font-size: 1.5em !important;
+  display:block;
+  margin-bottom: 1em !important;
+}
+.myAuthorName{
+  font-size: 1.2em;
+  display:block;
+  margin-bottom: 2em !important;
+}
+img{
+  box-shadow: none !important;
+  border-width: 0px !important;
+}
+.no_shadow{
+  box-shadow: none !important;
+  border-width: 0px !important;
+}
+.justActiveFragment:not(.current-fragment){
+  display: none !important;
+  height:0px;
+  line-height: 0px;
+  font-size: 0px;
+}
+.thinking{
+  color: gray;
+  font-size: 0.9em !important;
+}
+.thinking_ans{
+  font-size: 1.4em !important;
+  font-weight: 600 !important;
+}
+.asdasdas{
+  margin-bottom: 25px !important;
+}
+.asdasdas .figName{
+  color: orangered;
+}
+.asdasdas img{
+  margin: 0 !important;
+}
+.youSaid{
+  font-family: 'Indie Flower', cursive !important;
+}
+#visForBlock{
+  height: 25px; 
+  width: 25px;
+  left: 0px;
+  position: absolute;
+  top: -9px;
+  background-color: orangered;
+  border-radius: 20px;
+  -webkit-transition: left 2000ms ease-in-out;
+  -moz-transition: left 2000ms ease-in-out;
+  -o-transition: left 2000ms ease-in-out;
+  transition: left 2000ms ease-in-out;
+}
+.edu:before{ content: "."; }
+.twitLink{
+  color:#55ACEE !important;
+}
+.keshifLogo{
+  height: 1.2em;
+  position: relative;
+  top: 7px;
+  margin: 0px -6px 0px 0px !important;
+}
+</style>
 	<body>
-		<div class="wrapper">
 
-			<header>
+		<div class="reveal">
 
-				<h1>reveal.js</h1>
-				<p>
-					The HTML Presentation Framework &mdash; Site coming soon
-				</p>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
 
-			</header>
+      <section>
+        <span class="myTitle">Visualization for Data Exploration: <br>Why &amp; How?</span>
+        <span class="myAuthorName">M. Adil Yalçın</span>
+        <img src="img/hcil_logo.gif" class="no_shadow" style="float:left;" width="160" height="160">
+        <img src="img/umd_logo.svg" class="no_shadow" style="float:right;" width="160" height="160">
 
-			<footer>
+        <div>
+          <small>Baltimore Tableau Users Group Meeting</small><br>
+          <small>January 15th, 2015</small><br>
+          <img src="img/cs_logo.svg" class="no_shadow" width="360">
+        </div>
 
-				<p>
-					<a href="http://lab.hakim.se/reveal-js">Try the demo</a>
-					<a href="https://github.com/hakimel/reveal.js/releases">Download</a>
-				</p>
+        <aside class="notes">
+          CS, UMD, Ben Bederson and Niklas Elmqvist
+          </aside>
+				</section>
 
-			</footer>
+			<section class="Hello_EarlyWork">
+				<h2>Hello!</h2>
+        My early work : <b><u>Technology</u></b> focused<br><br>
+
+        <div class='fragment justActiveFragment'>
+          3D Graphics <br>
+          <i>3dPhone Project, 3D Displays, '08-'10</i><br>
+          <img src="img/3dphone.png" height="281" class="no_border">
+          <iframe width="420" height="315" src="https://www.youtube.com/embed/BSNshbAQ0oY?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+        <div class='fragment'>
+          Point Sampling<br>
+          <i>GPU programming, High-Performance Computing</i><br>
+          <img src="img/pixelpie.png" height="281" class="no_border">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/G94y3YRqSHk?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+
+        <aside class="notes">
+          Not my affiliations, but my passion.  
+        </aside>
+				</section>
+
+        <section class="Hello_CurrentWork">
+          <span style='font-weight:100'>My recent (&amp; future) work: <b><u>Design</u></b> focused</span><br> 
+          <b>Interfaces to Data</b>
+          <!--<br>Visualization + Interaction<br>-->
+          <img class='fragment' src='img/keshif.gif'>
+          </section>
+        
+        <section>
+          <div class='thinking'>What am I thinking about?</div>
+          <span class='fragment'>
+            <div class='thinking_ans'>Tools</div>
+            <img src="img/noun_hammer_org.svg" height="200"><br>
+            </span>
+          <span style='font-size: 0.8em' class='fragment'>
+            What's the <span style='color: orangered'>purpose</span> of our tools?<br>
+            What makes a tool <span style='color: orangered'>good / bad</span>?<br>
+            </span>
+          <aside class="notes">
+            Ideas are more important.
+            Repeating patterns and topics throughout my talk.
+          </aside>
+          </section>
+
+        <section>
+          <iframe src="http://keshif.me/demo/VisTools" frameborder="0" style='width: 100%; height: 600px'></iframe>
+          <aside class="notes">
+            My role as a tool developer.
+            Using a tool to show visualization tool.
+            Many people are excited by the content &amp; variety.
+            I question "why"?
+          </aside>
+          </section>
+
+        <section>
+          <div class='thinking'>What am I thinking about?<br>What separates our tools?</div>
+          <span class='fragment'>
+            <div class='thinking_ans'>Design</div>
+            <i class='fa fa-refresh fa-spin' style='font-size: 2em'></i><br>
+            </span>
+          <div class='fragment' style=' width: 80%; margin: 0 auto;'>
+            <img src='img/victorjpapanek.jpg' style='float: left; height: 170px;'>
+            "Design is the conscious effort to impose a meaningful order." <br> 
+              <span style='font-size: 0.8em'>Victor Papanek</span>
+            <br>
+            </div>
+          <div class='fragment' style=' width: 80%; margin: 0 auto;'>
+            <div style='text-align: right;'>
+            <img src="img/designofeverydaythings.jpg" style='float: right; height: 170px; margin: 10px;'>
+            <br><b>The Design of Everyday Things</b><br>
+            <span style='font-size: 0.8em'>by Donald Norman</span>
+            </div><br>
+            </div>
+            <aside class="notes">
+              Not in the form of art / creative expression, but as the design of things we use.
+              Visualization design, interaction design, (industrial design, even art, aesthetics).
+            </aside>
+          </section>
+
+        <section>
+          <img src='img/iphone.png' style='float: left;' height="500">
+          A phone that <b>serves</b> you.<br>
+          Many features, yet simple and intuitive.<br>
+          <!-- Gets the job done out-of-the-box.<br> -->
+          <div style='font-size: 0.7em; color: lightgray'>
+            Disclaimer: I do not use an iPhone.
+          </div>
+          <br>
+          <div class='fragment'>
+            Not the first touch-screen phone.<br>
+            Its success was more than its technology.<br>
+            It was with -design-.
+            </div><br>
+
+          <div class='fragment'>
+            Design &#8800; what you do.<br>
+            <span style='color: orangered; font-weight: 600;'> Design = how you do.</span>
+          </div>
+          <aside class="notes">
+            Apple figured out how to help you do more with your mobile device.
+            Link it back to visualization.
+          </aside>
+
+        </section>
+
+        <section>
+          <div class='thinking'>What am I thinking about?<br>Why design?</div>
+          <span class='fragment'>
+            <div class='thinking_ans'>People</div>
+            <img src="img/noun_mind.svg" height="200"><br>
+            </span>
+          <span style='font-size: 0.8em' class='fragment'>
+            Mind + cognition + context.<br>
+            The greatest thing ever means <i>nothing</i> if we cannot use it.
+            </span>
+            <aside class="notes">
+              Making technology accessible?
+            </aside>
+          </section>
+
+        <section>
+          <div class='asdasdas'>
+            <span style='display: inline-block; width: 30%'>
+              <img src="img/noun_hammer_org.svg" height="200"><br><span class='figName'>Tools</span></span>
+            <span style='display: inline-block; width: 30%'>
+              <i class='fa fa-refresh fa-spin' style='font-size: 2em'></i><br><br><br><span class='figName'>Design</span></span>
+            <span style='display: inline-block; width: 30%'>
+              <img src="img/noun_mind.svg" height="200"><br><span class='figName'>People</span></span>
+            </div>
+          <div class='fragment'>
+            How we do <i class='fa fa-chevron-left'></i> ________ <i class='fa fa-chevron-right'></i> How we think
+          </div>
+          <div class='fragment'>
+            Tools (+ design) influence how we <b>observe</b> &amp; how we <b>think</b>.<br>
+          </div>
+          <div class='fragment' style='font-size: 0.8em; margin-top: 10px'>
+            Tools can:<br>
+            <ul>
+              <li>Make us conform to them (wider gap,
+                <i class='fa fa-chevron-left'></i>......<i class='fa fa-chevron-right'></i>), <span style='color:gray'>or</span> </li>
+              <li>Guide us and expand our horizons (smaller gap,
+                <i class='fa fa-chevron-right'></i> <i class='fa fa-chevron-left'></i>).</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            it is not "either conform or guide". There is a balance.
+          </aside>
+        </section>
+
+        <section>
+          Excel Charting: How you do?
+          <span style='color:orangered'>Choose chart-type first.</span><br>
+          <img src="img/ExcelCharts.png" height='400'><br>
+          <div class='fragment'>
+            When you want to understand your data,<br>do you think of "chart types"?<br>
+            <div class='youSaid'>Today, I feel like it's a scatterplot day.</div>
+            </div>
+          </section>
+
+        <section>
+          <div style='font-size: 0.8em; margin-bottom: 10px;'>
+          <a href='https://support.office.com/en-us/article/Create-a-chart-0baf399e-dd61-4e18-8a73-b3fd5d5680c2'
+            target='_blank'>Excel Charting Documentation</a> 
+              <span style='color: gray; font-size: 0.9em'>(text, text, scroll, scroll... boring! )</div>
+          <div class='fragment'>
+            <div style='font-size: 0.7em;'>Excel is not the only offender (for visualization):</div>
+            <span style='width: 49%; display: inline-block;'>
+              <img style='height: 300px' src='img/RawDensityDesign.png'><br>
+              <a href='http://app.raw.densitydesign.org/' target='_blank'> Raw</a>, by DensityDesign
+              </span>
+            <span style='width: 49%; display: inline-block;'>
+              <img style='height: 300px' src='img/Quadrigram.png'><br>
+              <a href='http://www.quadrigram.com/' target='_blank'> Quadrigram</a>
+              </span>
+            <div style='margin-top: 10px; font-size:0.8em'>
+              <i class='fa fa-plus' style='font-size: 0.7em;'></i> "Charting" tools, libraries, 
+              <a href='http://annkemery.com/essentials/' target='_blank'>lists</a></div>
+            </div>
+        </section>
+
+        <section>
+          <a href='http://blog.visual.ly/graphic-continuum/' target='_blank'>
+          <img src='http://thumbnails-visually.netdna-ssl.com/the-graphic-continuum_5429904a31995_w1500.jpg' style='height:500px; margin: 0 !important'>
+          </a>
+          <div style='font-size:0.7em'>by <a href='https://twitter.com/jschwabish' target='_blank'>Jon Schwabish</a> (PolicyViz)</div>
+          <br>
+        </section>
+
+        <section>
+          Visualization &#8800; charting
+          <div class='fragment'> Visualization = <span style='color: orangered;'>Purposefully organized data</span> </div>
+          <div class='fragment'> Visualization should focus on data &amp; tasks &amp; people. </div>
+          <br>
+          <div class='fragment'>
+          With a good tool:
+          <ul>
+            <li>You don't need to decide on how to visualize.</li>
+            <li><b>The tool</b> knows the best practices, not you.</li>
+          </ul>
+          <br><br>
+          <span class='fragment'>
+            <i class='fa fa-plus-square'></i> You focus on your data &amp; tasks.<br>
+            <i class='fa fa-plus-square'></i> The interface disappears.<br>
+            <i class='fa fa-plus-square'></i> Visualization &amp; your dialogue with data just 'works'.<br>
+            </span>
+          </div>
+        </section>
+        <section>
+          Charting with Tableau: 
+          <span style='color:orangered'>Choose attributes first.</span><br>
+          Then, <span style='color:orangered'> Show Me</span>.<br>
+          <span style='position: relative; float: left; display: inline-block; height: 400px; width: 400px;'>
+            <span class='fragment justActiveFragment'><img src="img/TableauCharts_0.png" height='400' style='float: left'></span>
+            <span class='fragment'><img src="img/TableauCharts.png" height='400' style='float: left'></span>
+            </span>
+          <div class='fragment'>
+            <br>
+            You see the relevant charts (in color) based on data properties you selected.<br><br>
+            Shorter gap between<br> <span style='color:orangered'>how you think</span> 
+            <i class='fa fa-arrows-h'></i> <span style='color:orangered'>how you do</span>.
+            </div>
+          </section>
+
+        <section>
+          Why Visualize?<br>
+          Ascombe’s quartet<br>
+               -> Limitations<br>
+                   -> Different details
+          </section>
+
+        <section>
+          <i class='fa fa-bar-chart'></i>
+          <i class='fa fa-area-chart'></i>
+          <i class='fa fa-line-chart'></i>
+          <i class='fa fa-pie-chart'></i>
+          <br>
+          Visualization as a<br>
+          <span style="width: 50%; float: left" class="fragment"> 
+          <span style="color: orangered; font-weight: 700; font-size: 1.3em" id='visAsGoal'>Goal</span>
+          <ul>
+            <li>How do I <b>"visualize"</b>?</li>
+            <li>Good practices<br> Should's / shouldn't's</li>
+            <li>You serve to the visualization.</li>
+          </ul>
+          </span>
+
+          <span style="width: 50%; float: right" class="fragment" id='visAsTool'> 
+          <span style="color: orangered; font-weight: 700; font-size: 1.3em">Tool</span>
+          <ul>
+            <li>How do I <b>understand &amp; communicate</b> data?</li>
+            <li>Based on fundamentals &amp; data &amp; task</li>
+            <li>Visualization serves to you.</li>
+          </ul>
+          <aside class="notes">
+            Beyond a list of good practices. should/ should nots. They are very useful and directly practical.
+            There are also plenty.
+            there’s a deeper meaning than that.
+            It is not about best practices, it is deeper than that.
+          </aside>
+          </section>
+
+        <section>
+          <i class='fa fa-bar-chart'></i>
+          <i class='fa fa-area-chart'></i>
+          <i class='fa fa-line-chart'></i>
+          <i class='fa fa-pie-chart'></i>
+          <br>
+          Visualization for<br>
+          <div style="height: 4px; margin: 10px 0px; background-color: black; position: relative">
+            <div id="visForBlock"></div>
+          </div>
+          <span style="width: 50%; float: left" class="fragment"> 
+          <span style="color: orangered; font-weight: 700; font-size: 1.3em">Communication</span><br>
+          Designed for:
+          <ul>
+            <li>Specific Dataset</li>
+            <li>Direct attention to specific trends</li>
+            <li>Tell a story</li>
+            <li>Constrained interaction</li>
+          </ul>
+          </span>
+
+          <span style="width: 50%; float: right" class="fragment"> 
+          <span style="color: orangered; font-weight: 700; font-size: 1.3em">Exploration</span><br>
+          Designed for:<br>
+          <ul>
+            <li>Open-ended,</li>
+            <li>Flexible,</li>
+            <li>Iterative use</li>
+            <li>Many-views</li>
+            <li>Self motivated</li>
+          </ul>
+          <span class='fragment' id="fragMoveDot"></span>
+          <aside class="notes">
+            Use cases of Visualization
+          </aside>
+        </section>
+
+        <section data-background="img/amazonecho.jpg">
+          <span style='color: white;'>
+            The interface to <b>explore</b> your data:<br>
+            Ask to Echo / Siri / ... (?)<br>
+            <ul style='font-size: 0.9em; margin-top: 30px;'>
+              <li class='fragment'>Which month did we have more sales? 
+                <i class='fa fa-chevron-circle-right'></i> March</li>
+              <li class='fragment'>What product type did we produce the most? 
+                <i class='fa fa-chevron-circle-right'></i> Chairs </li>
+              <li class='fragment'>How did our sales change this year?
+                <i class='fa fa-chevron-circle-right'></i> +10% increase. </li>
+              <li class='fragment'>Which managers have highest performing team?
+                <i class='fa fa-chevron-circle-right'></i> Dave</li>
+              <span class='fragment'>
+              <li>...</li>
+              </span>
+              <span class='fragment'>
+              <li><b style='font-size: 1.2em; text-decoration: underline'>You can only learn what you can ask for!</b><br>
+                <i class='fa fa-check-circle'></i> <b><u>Visualization</u></b> gives you more context 
+                  <br>&amp; leads to <b>new</b> questions.<br>
+                <i class='fa fa-check-circle'></i> You need an <b><u>interactive, dynamic dialogue</u></b> <br>with data interface.<br>
+                </li>
+              </span>
+            </ul>
+          </span>
+          <aside class="notes">
+            Good for: Closest chinese restaurant, current stack market, news, encyplodedic information.
+          </aside>
+        </section>
+
+
+        <section>
+          A structure to Visualization Tasks: <b>How, Why, What</b><br>
+          <div style='height:400px; position: relative;'>
+          <span class='fragment justActiveFragment'>
+            <img style='position: absolute; top: 10px; left:0px; margin: 0px' src='img/TaskTopology_0.png' height='400'></span>
+          <span class='fragment justActiveFragment'>
+            <img style='position: absolute; top: 10px; left:0px; margin: 0px' src='img/TaskTopology_1.png' height='400'></span>
+          <span class='fragment justActiveFragment'>
+            <img style='position: absolute; top: 10px; left:0px; margin: 0px' src='img/TaskTopology.png' height='400'></span>
+            </div>
+
+          <br>
+          <span style='font-size: 0.6em;'>
+            <a href='http://www.cs.ubc.ca/labs/imager/tr/2013/MultiLevelTaskTypology/' target='_blank'>
+            A Multi-Level Typology of Abstract Visualization Tasks</a>, M. Brehmer, T. Munzner, TVCG2013
+            </span>
+        </section>
+
+        <section id="ReVis">
+          <div><span style='font-size: 1.4em; font-weight: 600'>Re-Vis</span> : Re-mix for data visualizations</div>
+          <div style='font-size: 0.8em; color: gray;'>Re-design helps us understand why, how, what, and the context.</div>
+          <div class='fragment'>
+            <img src='img/ReVis_Cairo_2.png' style='height: 350px; display: block; margin: 0 auto; padding-top: 10px;'>
+            <div style='font-size: 0.7em'>
+            <a href='http://www.thefunctionalart.com/2015/02/redesigning-circular-timeline.html' target='blank'>
+                Redesigning a circular timeline</a>, by Alberto Cairo</div>
+            <div style='font-size: 0.7em'>
+              <i class='fa fa-plus'></i><br>
+            <a href='https://medium.com/@hint_fm/design-and-redesign-4ab77206cf9#.62b5b8925' target='_blank'>
+              Design and Redesign in Data Visualization</a>, by Viégas &amp; Wattenberg</div>
+              </div>
+        </section>
+
+        <section id="ReVisKeshif">
+          <span style='font-size: 1.4em; font-weight: 600'>Re-Vis</span> with 
+            <b><img src="http://keshif.me/demo/img/logo.png" class='keshifLogo'>eshif</b><br>
+          <br>
+
+          <a target='_blank' href='http://keshif.me/demo/supplements'>Health Supplements</a><br>
+          <a target='_blank' href='http://keshif.me/demo/AlbumReviews2015'>Album Reviews</a><br>
+          <!-- <a target='_blank' href='http://keshif.me/demo/pitchfork_reviews'>Pitchfork Reviews</a><br> -->
+          <a target='_blank' href='http://keshif.me/demo/bart_employees'>Employee Salaries</a><br>
+          <a target='_blank' href='http://keshif.me/demo/selfiecity'>Selfiecity</a><br>
+          <a target='_blank' href='http://keshif.me/demo/StarWarsQuotes'>Star Wars Quotes</a>          
+        </section>
+
+<!--        <section>
+          Just because you can, doesn't mean you should.<br><br>
+          (Keshif animations in geo selections.)
+        </section>-->
+
+        <section style='font-size: 0.7em'>
+          <div style='float: left; display: inline-block; width: 60%'> 
+            <b><u>Just because you can, doesn't mean you should.</u></b><br><br>
+            <div>A great TreeMap example <i class='fa fa-arrow-down'></i></div>
+            <img src='img/FinViz.png'><br>
+            <a href='finviz.com/map.ashx' target='_blank'>FinVis</a><br>
+            <span style='font-size: 0.8em'>Companies grouped by market. Sum of market = sum of its companies. Color: change.</span>
+
+          </div>
+          <div style='text-align: center; margin; 40px 0px 0px 0px; display: inline-block' class='fragment'>
+
+          <i class='fa fa-arrow-down'></i> Bad TreeMap examples<br>
+
+          <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Nope. Do *not* use treemaps to show large number of values. The name tells its use <a href="https://twitter.com/idigdata">@idigdata</a> <a href="http://t.co/blbJYTVAZm">http://t.co/blbJYTVAZm</a> <a href="http://t.co/bL93K2I3uV">pic.twitter.com/bL93K2I3uV</a></p>&mdash; Adil Yalçın (@adilyalcin) <a href="https://twitter.com/adilyalcin/status/588872206886838272">April 17, 2015</a></blockquote>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a href='http://www.bloomberg.com/visual-data/industries/q/biggest-companies' target='_blank'>*</a>
+          <a href='https://www.cssipdata.org/patentsview/#visual' target='_blank'>*</a>
+          <span style='font-size: 0.7em;'><i class='fa fa-warning'></i> Bad by purpose, not by design.</span>
+          </div>
+
+          <div class='fragment'> Alternative <a href='http://adilyalcin.me/chubuk.js/demo.html' target='_blank'>:</a> 
+            (Live Demo)</div>
+        </section>
+
+        <section>
+          Exploring data using <b><img src="http://keshif.me/demo/img/logo.png" class='keshifLogo'>eshif</b>.<br><br>
+
+          Data from <a href='https://public.tableau.com/profile/zillow.real.estate.research#!/vizhome/TopPlacestoRetire/Dashboard1'
+            target='_blank'>Zillow's Tableau Dashboard</a>.<br><br>
+
+          Imported to <a href='https://docs.google.com/spreadsheet/ccc?key=1zBeXIBtbJsYwm1TLPWtzBcqm4WCK21sYSm7Gql7EfZE'
+            target='_blank'>Google Sheets</a><br><br>
+
+          <a href='http://www.keshif.me/demo/YourData' target='_blank'>Live Demo!</a>
+
+        </section>
+
+
+
+        <section>
+          <span class="">
+            <span style="font-weight:700;">Thank you!</span><br><br>
+              </span>
+            <div><a href='http://www.twitter.com/adilyalcin' target='_blank' class='twitLink'>
+              <i class='fa fa-twitter'></i>adilyalcin</a></div>
+            <div><i class='fa fa-envelope'></i> yalcin<i class='fa fa-at'></i>umd<span class='edu'>edu</span></div>
+            <div><i class='fa fa-home'></i> adilyalcin.me</div><br>
+
+          <div style='font-size: 0.8em;'>
+            <a href='http://keshif.me'>keshif.me</a>, 
+            <a href='http://www.twitter.com/keshifjs' target='_blank' class='twitLink'>
+              <i class='fa fa-twitter'></i>keshifjs</a>
+            <div>Open &amp; free:<a href='http://www.twitter.com/keshifjs' target='_blank'>
+              <i class='fa fa-github'></i> adilyalcin/keshif</a></div>
+            </div>
+
+          <img src="img/hcil_logo.gif" class="no_shadow" style="float:left;" width="160" height="160">
+          <img src="img/umd_logo.svg" class="no_shadow" style="float:right;" width="160" height="160">
+
+          <br><br><div>
+            <img src="img/cs_logo.svg" class="no_shadow" width="360">
+          </div>
+
+        </section>
+
+			</div>
 
 		</div>
 
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
 
-		  ga('create', 'UA-43375306-1', 'revealjs.com');
-		  ga('send', 'pageview');
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+      Reveal.addEventListener( 'fragmentshown', function( event ) {
+          var t=0;
+          // 
+          switch(event.fragment.getAttribute("id")){
+            case 'fragMoveDot':
+              d3.select("#visForBlock").style("left","80%");
+              break;
+            case 'visAsTool':
+              d3.select("#visAsGoal").style("text-decoration","line-through");
+              break;
+          }
+      });
+
 		</script>
+
 	</body>
 </html>
