@@ -111,6 +111,128 @@ img{
   top: 7px;
   margin: 0px -6px 0px 0px !important;
 }
+
+#AnscombeWrapper > .dataSet{
+  width: 23%;
+  margin: 0px 2px;
+  /*border: solid 1px black;*/
+  display: inline-block;
+  position: relative;
+  height: 500px;
+}
+
+#AnscombeWrapper > .dataSet > .datasetName{
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+}
+#AnscombeWrapper .rawData{ display: none;}
+#AnscombeWrapper[chartType="raw"] .rawData{ display: block;}
+#AnscombeWrapper[chartType="raw"] .dataSet{
+  display: none;
+}
+#AnscombeWrapper[chartType="raw"] .dataSet{
+  display: none;
+}
+
+#AnscombeWrapper[chartType="table"] .dataPoint{
+  position: absolute;
+  width: 100%;
+  left: 0px;
+}
+.summaryNum{
+  position: relative;
+  height: 40px;
+}
+.summaryNum .textForX{
+  width: 40px;
+}
+
+#AnscombeWrapper[chartType="table"] .textForX{
+  position: absolute;
+  left: 50px;
+  text-align: right;
+  display: block;
+}
+#AnscombeWrapper[chartType="table"] .textForY{
+  position: absolute;
+  left: 120px;
+}
+.hiddenPadding{ 
+  display: none;
+  visibility: hidden;
+}
+.dataPointWrapper{ position: relative;}
+
+.summaryText{
+  font-size: 0.7em !important;
+}
+.summaryType{
+  font-weight: 700 !important;
+}
+.summaryHeader{
+  margin-top: 50px !important;
+  font-size: 0.7em !important;
+  font-weight: 600 !important;
+  text-decoration: underline;
+}
+.rawDataText{
+  background-color: white;
+}
+.pointDot{
+  /* display: none; */
+  background-color: rgb(255,166, 0);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  display: block;
+  border-radius: 20px;
+  left: calc(50% - 10px);
+  top: 0.4em;
+  opacity: 0;
+  border: solid 2px rgb(141, 101, 28) !important;
+}
+.axisName{
+  position: absolute;
+  font-weight: 700;
+  font-size: 0.7em !important;
+  color: gray;
+}
+.axisTicks{
+  position: absolute;
+  font-size: 0.5em !important;
+  width: 20px;
+  color: gray;
+  display: block;
+}
+.ticks_X{
+  text-align: center;
+}
+.ticks_Y{
+  text-align: right;
+}
+.ticks_X:before{
+  width: 1px;
+  background-color: gray;
+  height: 10px;
+  position: relative;
+  left: 10px;
+  top: -4px;
+  content: "";
+  display: block;
+  margin-bottom: -6px;
+}
+.ticks_Y:before{
+  width: 10px;
+  background-color: gray;
+  height: 1px;
+  position: absolute;
+  right: -10px;
+  top: 10px;
+  content: "";
+  display: block;
+  margin-bottom: -6px;
+}
 </style>
 	<body>
 
@@ -118,7 +240,6 @@ img{
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-
       <section>
         <span class="myTitle">Visualization for Data Exploration: <br>Why &amp; How?</span>
         <span class="myAuthorName">M. Adil Yalçın</span>
@@ -161,7 +282,6 @@ img{
         <section class="Hello_CurrentWork">
           <span style='font-weight:100'>My recent (&amp; future) work: <b><u>Design</u></b> focused</span><br> 
           <b>Interfaces to Data</b>
-          <!--<br>Visualization + Interaction<br>-->
           <img class='fragment' src='img/keshif.gif'>
           </section>
         
@@ -220,7 +340,6 @@ img{
           <img src='img/iphone.png' style='float: left;' height="500">
           A phone that <b>serves</b> you.<br>
           Many features, yet simple and intuitive.<br>
-          <!-- Gets the job done out-of-the-box.<br> -->
           <div style='font-size: 0.7em; color: lightgray'>
             Disclaimer: I do not use an iPhone.
           </div>
@@ -345,8 +464,8 @@ img{
           </div>
         </section>
         <section>
-          Charting with Tableau: 
-          <span style='color:orangered'>Choose attributes first.</span><br>
+          Tableau Charting: How you do? <span style='color: gray'>(One way)</span><br>
+          <span style='color:orangered'>Choose attributes first</span>.
           Then, <span style='color:orangered'> Show Me</span>.<br>
           <span style='position: relative; float: left; display: inline-block; height: 400px; width: 400px;'>
             <span class='fragment justActiveFragment'><img src="img/TableauCharts_0.png" height='400' style='float: left'></span>
@@ -359,14 +478,22 @@ img{
             <i class='fa fa-arrows-h'></i> <span style='color:orangered'>how you do</span>.
             </div>
           </section>
+           
 
-        <section>
-          Why Visualize?<br>
-          Ascombe’s quartet<br>
-               -> Limitations<br>
-                   -> Different details
+        <section id='AnscombeSlide'>
+          <div id='AnscombeWrapper' chartType='raw'>
+          <span class='fragment' id="AnscombeRaw_Highlight"></span>
+          <span class='fragment' id="AnscombeList"></span>
+          <span class='fragment' id="AnscombeList_Align"></span>
+          <span class='fragment' id="AnscombeList_HighlightX"></span>
+          <span class='fragment' id="AnscombeList_HighlightY"></span>
+          <span class='fragment' id="AnscombeList_Merge"></span>
+          <span class='fragment' id="AnscombeList_Summary"></span>
+          <span class='fragment' id="AnscombeList_List_Back"></span>
+          <span class='fragment' id="AnscombeList_Scatter"></span>
           </section>
 
+        
         <section>
           <i class='fa fa-bar-chart'></i>
           <i class='fa fa-area-chart'></i>
@@ -502,7 +629,8 @@ img{
         <section id="ReVisKeshif">
           <span style='font-size: 1.4em; font-weight: 600'>Re-Vis</span> with 
             <b><img src="http://keshif.me/demo/img/logo.png" class='keshifLogo'>eshif</b><br>
-          <br>
+          <span style='font-size: 0.7em; color: gray'>For interactive data exploration</span>
+          <br><br>
 
           Health Supplements: <a target='_blank' href='http://keshif.me/demo/supplements'><i class='fa fa-square'></i></a> vs.
             <a href='http://www.informationisbeautiful.net/visualizations/snake-oil-supplements/' target='_blank'
@@ -510,7 +638,6 @@ img{
           Album Reviews: <a target='_blank' href='http://keshif.me/demo/AlbumReviews2015'><i class='fa fa-square'></i></a> vs.
             <a href='http://mattbrehmer.github.io/SoundConsensus/2015/' target='_blank'
             ><i class='fa fa-circle'></i></a><br>
-          <!-- <a target='_blank' href='http://keshif.me/demo/pitchfork_reviews'>Pitchfork Reviews</a><br> -->
           Employee Salaries: <a target='_blank' href='http://keshif.me/demo/bart_employees'><i class='fa fa-square'></i></a> vs.
             <a href='http://blog.vctr.me/bart/' target='_blank'
             ><i class='fa fa-circle'></i></a><br>
@@ -524,11 +651,6 @@ img{
           <div style='font-size: 0.6em; color: gray; margin-top: 50px'>
             I used shapes bc I don't explicitly suggest one is better.<br>Use. Decide.</div>
         </section>
-
-<!--        <section>
-          Just because you can, doesn't mean you should.<br><br>
-          (Keshif animations in geo selections.)
-        </section>-->
 
         <section style='font-size: 0.7em'>
           <div style='float: left; display: inline-block; width: 60%'> 
@@ -582,7 +704,7 @@ img{
             <a href='http://keshif.me'>keshif.me</a>, 
             <a href='http://www.twitter.com/keshifjs' target='_blank' class='twitLink'>
               <i class='fa fa-twitter'></i>keshifjs</a>
-            <div>Open &amp; free:<a href='http://www.twitter.com/keshifjs' target='_blank'>
+            <div>Open &amp; free:<a href='http://www.github.com/adilyalcin/keshif' target='_blank'>
               <i class='fa fa-github'></i> adilyalcin/keshif</a></div>
             </div>
 
@@ -635,7 +757,199 @@ img{
             case 'visAsTool':
               d3.select("#visAsGoal").style("text-decoration","line-through");
               break;
+            case 'AnscombeRaw_Highlight':
+              d3.select("#AnscombeWrapper .dataset_0").transition().duration(1000).style("background-color","#F8B3B3");
+              d3.select("#AnscombeWrapper .dataset_1").transition().duration(1000).style("background-color","#AEE5AE");
+              d3.select("#AnscombeWrapper .dataset_2").transition().duration(1000).style("background-color","#B0B0FF");
+              d3.select("#AnscombeWrapper .dataset_3").transition().duration(1000).style("background-color","#FFFF9D");
+              break;
+            case 'AnscombeList':
+              d3.select("#AnscombeWrapper").attr("chartType","table");
+              break;
+            case 'AnscombeList_Align':
+              d3.selectAll(".hiddenPadding").style("display","inline");
+              d3.selectAll(".textForX").style("width","40px");
+              break;
+            case 'AnscombeList_HighlightX':
+              d3.selectAll(".textForX").style("color","orangered");
+              break;
+            case 'AnscombeList_HighlightY':
+              d3.selectAll(".textForX").style("color",null);
+              d3.selectAll(".textForY").style("color","orangered");
+              break;
+            case 'AnscombeList_Merge':
+              d3.selectAll(".textForY").style("color",null);
+              d3.selectAll(".dataPoint").transition().delay(function(d,i){ return i*50;}).style("top","0px");
+              break;
+            case 'AnscombeList_Summary':
+              setTimeout(function(){
+                summaryBlocks = datasetsDOM.append("div").attr("class","summaryBlocks");
+                summaryBlocks.append("div")
+                  .attr("class","summaryHeader")
+                  .text("Summaries")},1000);
+              setTimeout(function(){
+                summaryBlocks.append("div")
+                  .attr("class","summaryText summaryType")
+                  .text("Average")},2000);
+              setTimeout(function(){
+                hmmpf = summaryBlocks.append("div")
+                  .attr("class","summaryText summaryNum")
+                  .style("opacity",0)
+                  .html("<span class='textForX'>9</span> <span class='textForY'>7.50</span>");
+                hmmpf.transition().style("opacity",1).style('color','orangered');
+                },3000);
+              setTimeout(function(){
+                summaryBlocks.append("div")
+                  .attr("class","summaryText summaryType")
+                  .text("Variance")},5000);
+              setTimeout(function(){
+                hmmpf.transition().style("opacity",1).style('color','black');
+                hmmpf = summaryBlocks.append("div")
+                  .attr("class","summaryText summaryNum")
+                  .style("opacity",0)
+                  .html("<span class='textForX'>11</span> <span class='textForY'>4.12</span>");
+                hmmpf.transition().style("opacity",1).style('color','orangered');
+                },6000);
+              setTimeout(function(){
+                summaryBlocks.append("div")
+                  .attr("class","summaryText summaryType")
+                  .text("Correlation")},8000);
+              setTimeout(function(){
+                hmmpf.transition().style("opacity",1).style('color','black');
+                summaryBlocks.append("div")
+                  .attr("class","summaryText")
+                  .style("opacity",0)
+                  .text("0.816")
+                  .transition().style("opacity",1).style('color','orangered');
+                },9000);
+              break;
+            case 'AnscombeList_List_Back':
+              if(typeof summaryBlocks !== 'undefined') summaryBlocks.transition().duration(1000).style("opacity",0);
+              setTimeout(function(){
+                datapointsDOM
+                  .transition().delay(function(d,i){ return i*50;}).style("top",function(d,i){ return (30*i)+"px";});
+                d3.selectAll(".pointDot").transition().style("opacity","1");
+                d3.selectAll(".dataPointWrapper").selectAll(".axisName").data([{v:'x',i:0},{v:'y',i:1}])
+                  .enter().append("div").attr("class","axisName")
+                    .text(function(d){ return d.v; })
+                    .style("top","340px")
+                    .style("left",function(d){ return d.i?"150px":"70px"; });
+              },1000);
+              break;
+            case 'AnscombeList_Scatter':
+              d3.selectAll(".textForX").transition().duration(1000).style("opacity","0");
+              d3.selectAll(".textForY").transition().duration(1000).style("opacity","0");
+              setTimeout(function(){
+                datapointsDOM
+                  .transition().duration(1000)
+                  .style("left",function(d){ return ((10*d.x)-100)+"px";})
+                  .style("top",function(d){ return (150-(10*d.y))+"px";});
+                d3.selectAll(".axisName")
+                  .transition().duration(1000)
+                  .style("left",function(d){ return d.i ? "0px" : "100px";})
+                  .style("top",function(d){ return d.i ? "-5px" : "185px";});
+                setTimeout(function(){
+                  var dataPointWrapper = d3.selectAll(".dataPointWrapper");
+                  // Add axis line
+                  dataPointWrapper.append("div").attr("class","axisLine")
+                    .style({
+                      'top': "30px",
+                      'left': "15px",
+                      'width': "1px",
+                      'height': "135px",
+                      'background-color': "gray",
+                      'position': "absolute",
+                    });
+
+                  dataPointWrapper.append("div").attr("class","axisLine")
+                    .style({
+                      'top': "165px",
+                      'left': "15px",
+                      'height': "1px",
+                      'width': "190px",
+                      'background-color': "gray",
+                      'position': "absolute",
+                    });
+                  // insert ticks
+
+                  dataPointWrapper.selectAll("ticks_X").data([4,8,12,16, 20])
+                    .enter()
+                    .append("div").attr("class","axisTicks ticks_X")
+                    .style("top","165px")
+                    .style("left", function(d){ return (-5+d*10)+"px"; })
+                    .text(function(d){ return d;})
+
+                  dataPointWrapper.selectAll("ticks_Y").data([4,8,12])
+                    .enter()
+                    .append("div").attr("class","axisTicks ticks_Y")
+                    .style("top", function(d){ return (160-(10*d))+"px"; })
+                    .style("left", "-9px")
+                    .text(function(d){ return d;})
+
+                },1500);
+              },1500);
+              break;
           }
+      });
+
+      function getAbscombe_Bad(){
+        var a = [];
+        AnscombeData.forEach(function(ds,i){
+          var b = [];
+          ds.forEach(function(pt){
+            b.push( "["+pt.x+","+pt.y+"]" );
+          });
+          a.push("<span class='rawDataText dataset_"+i+"'>["+b.join(",")+"]</span> ");
+        });
+        return a.join(",");
+      }
+
+      function setAnscombe(){
+        d3.json('Anscombe.json', function(data){
+          AnscombeData = data;
+
+          var w= d3.select("#AnscombeWrapper");
+
+          w.append("div").attr("class","rawData").html(getAbscombe_Bad());
+
+          datasetsDOM = w.selectAll(".dataSet").data(data).enter()
+            .append("div").attr("class","dataSet");
+
+          datasetsDOM.append("div").attr("class","datasetName").text(function(d,i){
+            switch(i){
+              case 0: return "Dataset A";
+              case 1: return "Dataset B";
+              case 2: return "Dataset C";
+              case 3: return "Dataset D";
+            }
+          });
+
+          datapointsDOM = datasetsDOM.append("div").attr("class","dataPointWrapper")
+            .selectAll(".dataPoint").data(function(d){ return d; }).enter()
+            .append("div").attr("class","dataPoint")
+            .style("top",function(d,i){ return (30*i)+"px";});
+
+          datapointsDOM.append("span").attr("class","textForX").text(function(d){ return d.x; });
+          datapointsDOM.append("span").attr("class","textForY").html(function(d){ 
+            if(d.y<10) return "<span class='hiddenPadding'>0</span>"+d.y;
+            return d.y; 
+          });
+
+          datapointsDOM.append("span").attr("class","pointDot");
+        });
+      };
+
+      Reveal.addEventListener( 'ready', function( event){
+        setAnscombe();
+      });
+
+      Reveal.addEventListener( 'slidechanged', function( event){
+        switch(event.currentSlide.getAttribute('id')){
+          case 'AndscombeSlide':
+            setAnscombe();
+            break;
+            break;
+        }
       });
 
 		</script>
